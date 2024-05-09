@@ -15,7 +15,7 @@ import AuthenticationRoutes from "./Authentication";
 import Admindashboard from "./AdminDashboard";
 import UserActivation from "./ActivateUserAuth";
 import Dashboard from "./Dashboard";
-
+import Wallet from "./WalletPages";
 import UserInformationForms from "./UserInformationWizard";
 import IsoDashboard from "./IsoDashboard";
 import underWriterDashboard from "./underWriterDashboar";
@@ -71,6 +71,7 @@ const Routes = [
   ...UserActivation,
   ...Dashboard,
   ...ApprovedMerchantRoutes,
+  ...Wallet,
 ];
 
 const getRouteMeta = (route) => {

@@ -1,0 +1,124 @@
+import { element } from "prop-types";
+import { lazy } from "react";
+import { Home, Activity, ShoppingCart } from "react-feather";
+// const Admin =lazy(()=>import('../../views/pages/admin'));
+const UserManagement = lazy(() =>
+  import("../../views/pages/admin/component/UserManagement")
+);
+// const UserManagement = lazy(() =>
+//   import("../../views/pages/admin-management/user-role-managment/UsersTable")
+// );
+const Application = lazy(() =>
+  import("../../views/pages/admin/component/Application")
+);
+const Setting = lazy(() => import("../../views/pages/admin/component/Setting"));
+const Rates = lazy(() => import("../../views/pages/admin/component/rates"));
+const RatesPreview = lazy(() =>
+  import(
+    "../../views/pages/admin-management/underwrite-by-approved/AprovedByUW"
+  )
+)
+const AppStore = lazy(() => import("../../views/pages/walletpages/Appstore"));
+
+const Admindashboard = [
+  {
+    path: "/admin/usermanagement",
+    element: <UserManagement />,
+  },
+  // {
+  //   path: "/rateform",
+  //   element: <Rates />,
+  // },
+  {
+    path: "/admin/setting",
+    element: <Setting />,
+  },
+  {
+    path: "/admin/preview",
+    element: <RatesPreview />,
+  },
+
+  {
+    id: "myaccount",
+    title: "My Account",
+    icon: <Home />,
+    children: [
+      {
+        id: "myprofile",
+        title: "My Profile",
+        icon: <Activity />,
+        navLink: "/dashboard/analytics",
+      },
+      {
+        id: "accountSettings",
+        title: "Account Setting",
+        icon: <ShoppingCart />,
+        navLink: "/dashboard/ecommerce",
+      },
+      {
+        id: "support",
+        title: "Support",
+        icon: <ShoppingCart />,
+        navLink: "/dashboard/ecommerce",
+      },
+    ],
+  },
+  {
+    id: "appstore",
+    title: "App Store",
+    icon: <Home />,
+    element: <AppStore />,
+  },
+  {
+    id: "addmoney",
+    title: "Add Money",
+    icon: <Home />,
+  },
+  {
+    id: "sendmoney",
+    title: "Send Money",
+    icon: <Home />,
+  },
+  {
+    id: "escrow",
+    title: "Escrow Management",
+    icon: <Home />,
+  },
+  {
+    id: "invoice",
+    title: "Invoice Management",
+    icon: <Home />,
+  },
+  {
+    id: "calendar",
+    title: "Calendar",
+    icon: <Home />,
+  },
+  {
+    id: "currencyconversion",
+    title: "Currency Conversion",
+    icon: <Home />,
+  },
+  {
+    id: "prepaidCard",
+    title: "Prepaid Card",
+    icon: <Home />,
+  },
+  {
+    id: "billPayment",
+    title: "Bill Payment",
+    icon: <Home />,
+  },
+  {
+    id: "switchaccount",
+    title: "Switch Account",
+    icon: <Home />,
+  },
+  {
+    id: "logout",
+    title: "Logout",
+    icon: <Home />,
+  },
+];
+
+export default Admindashboard;
