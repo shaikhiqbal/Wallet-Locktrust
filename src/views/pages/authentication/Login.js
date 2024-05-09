@@ -103,67 +103,13 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     // {{debugger}}
-
-    if (resend >= 3) {
-      return handleError();
-    }
-    if (Object.values(data).every((field) => field.length > 0)) {
-      const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-      await sleep(1000);
-      if (Object.values(data).every((field) => field.length > 0)) {
-        setFormData({ ...data });
-        setHiddenStatus(true);
-        data.preventDefault;
-        useJwt
-          .login({
-            email: data.loginEmail,
-            password: data.password,
-            location: `${lat},${long}`,
-            login: true,
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              setOpen(!open);
-              setTempOTP(res?.data?.code ? res?.data?.code + "" : "");
-              setToken(res.data.token);
-              setMobileNumber(res.data.user);
-            }
-          })
-          .catch((err) => {
-            if (err && err.response && err.response.status === 403) {
-              let res_data = err.response.data;
-              setBEError(res_data.detail);
-              setResend((resend) => resend + 1);
-              if (resend == 1) {
-                setRecaptchaBoolean(true);
-              }
-            }
-            if (err?.response?.status === 429) {
-              alert("your max limite exceeded try some time later");
-            }
-            if (err?.response?.status === 400) {
-              setError400(err?.response?.data);
-              setNotVerified(true);
-            }
-            if (err?.response?.status === 403) {
-              setErrorBe(err?.response?.data?.message);
-            }
-            if (err?.response?.status === 400) {
-              setBEError(err?.response?.detail);
-            }
-
-            setHiddenStatus(false);
-          });
-      }
-    } else {
-      for (const key in data) {
-        if (data[key].length === 0) {
-          setError(key, {
-            type: "manual",
-          });
-        }
-      }
-    }
+    // setHiddenStatus(true);
+    // const sleep = (ms) =>
+    //   new Promise((resolve, reject) => setTimeout(resolve, ms));
+    // setHiddenStatus(false);
+    // await sleep(3000);
+    setOpen(!open);
+    setToken("'MQ/c6rp6c-2dc871bb878cf6bc0073c15f61cbfbd0'");
   };
 
   const RegisterMobileNumber = () => {

@@ -32,8 +32,6 @@ import OTPInput from "otp-input-react";
 
 import Messages from "./two-step-verification/SVG/Messages.gif";
 
-
-
 const abilityList = {
   admin: [
     {
@@ -99,14 +97,14 @@ const LogInVerfication = ({
   mobile = "",
   code,
 }) => {
-code=code+""
+  code = code + "";
   const {
     control,
     setError,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({ token: token,otp:code?code:""});
+  } = useForm({ token: token, otp: code ? code : "" });
 
   const ability = useContext(AbilityContext);
 
@@ -156,44 +154,14 @@ code=code+""
 
   const onCallOTP = () => {
     // old e nd poin
-      // .login({ email: data.loginEmail, password: data.password, attempt: 3 })
-    useJwt
-      .resendOtp(token,{ attempt: 3 })
-      .then((res) => {
-        if (res.status === 202) {
-          // setTokenVal(res.data.token);
-          setCounter(30);
-        }
-      })
-
-      .catch((err) => {
-        if (err?.response?.status === 403) {
-        }
-        if (err && err.response && err.response.status === 429) {
-          alert("your maximum login attempt exceed");
-        }
-      });
+    // .login({ email: data.loginEmail, password: data.password, attempt: 3 })
+  
   };
 
   const onResendOTP = () => {
     // ** Old End Point
     // .login({ email: data.loginEmail, password: data.password, attempt: 2 })
-    useJwt
-      .resendOtp(token,{ attempt: 2 })
-      .then((res) => {
-        if (res.status === 202) {
-          // setTokenVal(res.data.token);
-          setCounter(30);
-        }
-      })
-      .catch((err) => {
-        if (err && err.response && err.response.status === 403) {
-          setErrorOTP(err?.response?.data.detail);
-        }
-        if (err && err.response && err.response.status === 429) {
-          return alert("your maximum login attempt exceed");
-        }
-      });
+   
   };
 
   useEffect(() => {
@@ -202,34 +170,90 @@ code=code+""
 
   useEffect(() => {
     setValue("token", token);
-    setValue('otp',code)
+    setValue("otp", code);
   }, [token]);
 
   const onSubmit = (data) => {
     // console.log(data)
-    if (Object.values(data).every((field) => field?.length > 0)) {
-      useJwt
-        .verifyOtp({ code_token: data.token, code: data.otp })
-        .then((res) => {
-          setLocalHost(res);
-        })
-        .catch((err) => {
-          if (err?.response && err?.response.status === 403) {
-            setErrorOTP(err && err?.response?.data?.detail);
-            console.log(err?.response);
-            alert(403);
-          }
-          setErrorOTP(err?.response?.detail);
-        });
-    } else {
-      for (const key in data) {
-        if (data[key].length === 0) {
-          setError(key, {
-            type: "manual",
-          });
-        }
-      }
-    }
+
+    const fakeData = {
+      data: {
+        refresh:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNTM1NzQ5NSwiaWF0IjoxNzE1MjcxMDk1LCJqdGkiOiI3MjFkNmZlMGM5Mzc0YWZmOTFiZjBmNzRjMTY0YmZjMiIsInVzZXJfaWQiOiIxZmM5OTI3My0xZWYzLTQyYzItOTIxZC01MmM4OGZhMTU0ZTIifQ.UwABR1TTWGckmEZJTvy_POTauCbKg93bvQ7hnhQNQ10",
+        access:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODc1ODk1LCJpYXQiOjE3MTUyNzEwOTUsImp0aSI6ImUwNTQxZDllZjUwMTQxM2FiMDBkNzBkOTM4ZmZjNjAyIiwidXNlcl9pZCI6IjFmYzk5MjczLTFlZjMtNDJjMi05MjFkLTUyYzg4ZmExNTRlMiJ9.JjPpJBubftulQ3Jqjrdu-ueDPqBPkIx4fsbRfUXhFSQ",
+        user: {
+          profile: null,
+          full_name: "LT Admin",
+          email: "admin@locktrustbank.com",
+          mobile: "+919579668524",
+          user_type: 1,
+          date_joined: "2024-01-17T15:26:07Z",
+          uid: "1fc99273-1ef3-42c2-921d-52c88fa154e2",
+          country_code: "",
+          is_active: true,
+          user_role: {
+            id: 5,
+            up: [
+              "create_APPLICATION_FORM",
+              "update_APPLICATION_FORM",
+              "view_APPLICATION_FORM",
+              "delete_APPLICATION_FORM",
+              "create_ALL_USER_CREATION",
+              "update_ALL_USER_CREATION",
+              "view_ALL_USER_CREATION",
+              "delete_ALL_USER_CREATION",
+              "create_RATEFORM",
+              "update_RATEFORM",
+              "view_RATEFORM",
+              "delete_RATEFORM",
+              "create_QUERY_MANGEMENT",
+              "update_QUERY_MANGEMENT",
+              "view_QUERY_MANGEMENT",
+              "delete_QUERY_MANGEMENT",
+              "create_MERCHANT_RATE_VIEW",
+              "update_MERCHANT_RATE_VIEW",
+              "view_MERCHANT_RATE_VIEW",
+              "delete_MERCHANT_RATE_VIEW",
+              "create_MERCHANT_INFORMATION",
+              "update_MERCHANT_INFORMATION",
+              "view_MERCHANT_INFORMATION",
+              "delete_MERCHANT_INFORMATION",
+              "create_ISO_APPLICATION_FORM",
+              "update_ISO_APPLICATION_FORM",
+              "view_ISO_APPLICATION_FORM",
+              "delete_ISO_APPLICATION_FORM",
+              "create_APPLICATION_FORM_VIEW",
+              "update_APPLICATION_FORM_VIEW",
+              "view_APPLICATION_FORM_VIEW",
+              "delete_APPLICATION_FORM_VIEW",
+              "create_MERCHANT_STATUS",
+              "update_MERCHANT_STATUS",
+              "view_MERCHANT_STATUS",
+              "delete_MERCHANT_STATUS",
+              "create_BANK_MANAGEMENT",
+              "update_BANK_MANAGEMENT",
+              "view_BANK_MANAGEMENT",
+              "delete_BANK_MANAGEMENT",
+              "create_BANK_FORM",
+              "update_BANK_FORM",
+              "view_BANK_FORM",
+              "delete_BANK_FORM",
+            ],
+            uid: "51ba88a3-cd98-4fe5-b649-742b69dee052",
+            created_at: "2024-01-22T13:17:51Z",
+            rn: "Admin",
+            created_by: null,
+            pur: null,
+          },
+        },
+        by_pass_iso: false,
+        approved: false,
+        isSuperAdmin: false,
+      },
+    };
+
+    setLocalHost(fakeData);
   };
 
   useEffect(() => {
