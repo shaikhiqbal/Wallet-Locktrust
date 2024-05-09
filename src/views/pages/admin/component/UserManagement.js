@@ -13,47 +13,27 @@ import StatsVertical from "@components/widgets/stats/StatsVertical";
 
 import Modalform from "./Modalform";
 
-import {C2,C1,DataTable} from "./CP"
-
+import { C2, C1, C3, C4 } from "./CP";
 
 const UserManagement = () => {
   const [open, setOpen] = useState(false);
-  const [selectedComponent, setSelectedComponent] = useState(null);
+  const [selectedComponent, setSelectedComponent] = useState(0);
 
-  const toggle = () => {
+  const CP = [C1, C2, C3, C4];
+
+  const toggle = (id) => {
+    if (typeof id == "number") setSelectedComponent(id);
     setOpen(!open);
   };
   // ** Context
   // ** Context
   const context = useContext(ThemeColors);
-  const cardList = [
-    {
-      t: "Total Balance",
-      c: [
-        {
-          t: "Wallet Balance ",
-          m: 100,
-        },
-        {
-          t: "Cash in hand ",
-          m: 100,
-        },
-        {
-          t: "Bank Balance",
-          m: 100,
-        },
-        {
-          t: "Prepard Card",
-          m: 100,
-        },
-      ],
-    },
-  ];
+
   return (
     <>
       <Row>
         {/* Stats With Icons Horizontal */}
-        <Col lg="3" sm="6" onClick={toggle}>
+        <Col lg="3" sm="6" onClick={() => toggle(0)}>
           <StatsHorizontal
             icon={<Cpu size={21} />}
             color="primary"
@@ -61,7 +41,7 @@ const UserManagement = () => {
             statTitle="Total Balance"
           />
         </Col>
-        <Col lg="3" sm="6" onClick={toggle}>
+        <Col lg="3" sm="6" onClick={() => toggle(1)}>
           <StatsHorizontal
             icon={<Server size={21} />}
             color="success"
@@ -69,7 +49,7 @@ const UserManagement = () => {
             statTitle="ADD/ReceivedMoney"
           />
         </Col>
-        <Col lg="3" sm="6" onClick={toggle}>
+        <Col lg="3" sm="6" onClick={() => toggle(2)}>
           <StatsHorizontal
             icon={<Activity size={21} />}
             color="danger"
@@ -77,7 +57,7 @@ const UserManagement = () => {
             statTitle="Send/ Withdraw Money"
           />
         </Col>
-        <Col lg="3" sm="6" onClick={toggle}>
+        <Col lg="3" sm="6" onClick={() => toggle(3)}>
           <StatsHorizontal
             icon={<AlertOctagon size={21} />}
             color="warning"
@@ -93,7 +73,11 @@ const UserManagement = () => {
           />
         </Col>
       </Row>
-      <Modalform open={open} toggle={toggle} Component={C2} />
+      <Modalform
+        open={open}
+        toggle={toggle}
+        Component={CP[selectedComponent]}
+      />
     </>
   );
 };

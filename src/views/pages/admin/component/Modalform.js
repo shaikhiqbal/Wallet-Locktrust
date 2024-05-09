@@ -1,5 +1,11 @@
 import React from "react";
-import { Activity, Codepen, Columns, CreditCard, FileText } from "react-feather";
+import {
+  Activity,
+  Codepen,
+  Columns,
+  CreditCard,
+  FileText,
+} from "react-feather";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 const c2 = [
@@ -41,17 +47,25 @@ const c2 = [
   },
 ];
 
-const Modalform = (props) => {
+const Modalform = ({
+  open,
+  toggle,
+  size = "modal-lg",
+  Component,
+  title = "",
+}) => {
   return (
-    <Modal isOpen={props.open} toggle={props.toggle} contentClassName="pt-0" className="modal-dialog-centered modal-lg">
-      <ModalHeader
-        className="mb-1"
-        
-        toggle={props.toggle}
-        tag="div"
-      ></ModalHeader>
+    <Modal
+      isOpen={open}
+      toggle={toggle}
+      contentClassName="pt-0"
+      className={`modal-dialog-centered ${size}`}
+    >
+      <ModalHeader className="mb-1" toggle={toggle} tag="div">
+        {title}
+      </ModalHeader>
       <ModalBody className="flex-grow-1">
-        <props.Component data={c2} />
+        <Component data={c2} />
       </ModalBody>
     </Modal>
   );
