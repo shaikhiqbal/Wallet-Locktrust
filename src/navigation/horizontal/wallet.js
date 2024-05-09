@@ -1,4 +1,4 @@
-import { Home } from "react-feather";
+import { Circle, FileText, Home } from "react-feather";
 
 export default [
   {
@@ -57,10 +57,35 @@ export default [
     navLink: "/admin/escrow",
   },
   {
-    id: "invoicemgmt",
-    title: "Invoice Management",
-    icon: <Home />,
-    navLink: "/admin/invoice",
+    id: "invoiceApp",
+    title: "Invoice",
+    icon: <FileText size={20} />,
+    children: [
+      {
+        id: "invoiceList",
+        title: "List",
+        icon: <Circle size={12} />,
+        navLink: "/apps/invoice/list",
+      },
+      {
+        id: "invoicePreview",
+        title: "Preview",
+        icon: <Circle size={12} />,
+        navLink: "/apps/invoice/preview",
+      },
+      {
+        id: "invoiceEdit",
+        title: "Edit",
+        icon: <Circle size={12} />,
+        navLink: "/apps/invoice/edit",
+      },
+      {
+        id: "invoiceAdd",
+        title: "Add",
+        icon: <Circle size={12} />,
+        navLink: "/apps/invoice/add",
+      },
+    ],
   },
   {
     id: "calendar",

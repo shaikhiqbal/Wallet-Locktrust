@@ -510,7 +510,7 @@ export const DepCheck = () => {
             </Col>
           </Row>
           <Row className="mb-1">
-            <Label sm="3" for="Email">
+            <Label sm="3" for="Email"> 
               Bank Name
             </Label>
             <Col sm="9">
