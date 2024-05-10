@@ -1,678 +1,139 @@
 // ** React Imports
-import { createContext, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// ** Custom Hooks
-import { useSkin } from "@hooks/useSkin";
-import useJwt from "@src/auth/jwt/useJwt";
+import { Link } from 'react-router-dom'
 
-// ** Store & Actions
-import { useDispatch } from "react-redux";
-
-// ** Third Party Components
-import { useForm, Controller } from "react-hook-form";
-import { Facebook, Twitter, Mail, GitHub, Info } from "react-feather";
-import Select from "react-select";
-// ** Context
-import { AbilityContext } from "@src/utility/context/Can";
+// ** Icons Imports
+import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 
 // ** Custom Components
-import InputPasswordToggle from "@components/input-password-toggle";
-// import SpinnerComponent from "@core/components/spinner/Fall-spinner"
+import InputPasswordToggle from '@components/input-password-toggle'
+
 // ** Reactstrap Imports
-import {
-  Row,
-  Col,
-  CardTitle,
-  CardText,
-  Label,
-  Button,
-  Form,
-  Input,
-  FormFeedback,
-  Progress,
-  Spinner,
-} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap'
 
 // ** Styles
-import "@styles/react/pages/page-authentication.scss";
-import ReactCountryFlag from "react-country-flag";
-import country_code from "../../../country_code.json";
-import RegistrationVerification from "./SignUpVerificationModel";
-import RegistrationVerfication from "./SignUpVerificationModel";
-import EmailAndPhoneExist from "./EmailAndPhVerify";
+import '@styles/react/pages/page-authentication.scss'
 
-const defaultValues = {
-  first_name: "",
-  email: "",
-  mobile: "",
-  password: "",
-  password2: "",
-};
-const progressColor = {
-  33: "danger",
-  65: "info",
-  100: "info",
-};
-let num = 0;
-let upper = 0;
-let lowe = 0;
-let symb = 0;
-let char = 0;
-
-const Register = () => {
-  // ** Hooks
-  const ability = useContext(AbilityContext);
-  const { skin } = useSkin();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [password, setPassword] = useState("");
-  const [confirm_password, setConfirmPassword] = useState("");
-  const [progress, setProgress] = useState(0);
-  const [passwordStrength, setpasswordStrength] = useState("Very Week");
-  const [loader, setLoader] = useState(false);
-  const [emailAddress, setEmailAddress] = useState("");
-  //** store multiple email and number state to send SignUpVerification component;
-  const [checkData, setCheckData] = useState({
-    email: "",
-    mobile: "",
-    country: "",
-  });
-
-  const {
-    control,
-    setError,
-    handleSubmit,
-    setValue,
-    clearErrors,
-    formState: { errors },
-  } = useForm();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [countryCode, setCountryCode] = useState(0);
-  const [flag, setFlag] = useState("");
-  const [open, setOpen] = useState(false);
-  const [canvasOpen, setCanvasOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-  // setpasswordStrength("Week");
-  const colorVal = (val) => {
-    if (val <= 33) {
-      return "danger";
-    } else if (val <= 65 && val >= 34) {
-      return "warning";
-    } else if (val <= 100 && val >= 66) {
-      // setpasswordStrength("Strength");
-      return "success";
-    }
-  };
-
-  const illustration =
-      skin === "dark" ? "register-v2-dark.svg" : "register-v2.svg",
-    source = require(`@src/assets/images/pages/${illustration}`).default;
-
-  const validatePassword = (data) => {
-    const number = /[\d]/;
-    const lowercase = /[a-z]/;
-    const uppercase = /[A-Z]/;
-    const specialsymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    let passwordCardF = true;
-    document.getElementById("passwordCard").style.display = "none";
-    document.getElementById("passwordCard").style.transition = "all 2s ease";
-    document.getElementById("passwordCard").style.height = "auto";
-    document.getElementById("passwordCard").style.opacity = "1";
-    if (number.test(data)) {
-      document.getElementById("number").style.color = "green";
-      document.getElementById("number").style.fontWeight = "900";
-      const numberCheck = document.getElementById("number-x");
-      numberCheck.classList.remove("fa-times");
-      numberCheck.classList.add("fa-check");
-      numberCheck.style.color = "green";
-      num = 20;
-    } else {
-      document.getElementById("number").style.color = "red";
-      document.getElementById("number").style.fontWeight = "900";
-      const numberCheck = document.getElementById("number-x");
-      numberCheck.classList.remove("fa-check");
-      numberCheck.classList.add("fa-times");
-      numberCheck.style.color = "red";
-      passwordCardF = false;
-      num = 0;
-    }
-    if (lowercase.test(data)) {
-      document.getElementById("lowercase").style.color = "green";
-      document.getElementById("lowercase").style.fontWeight = "900";
-      const lowercaseCheck = document.getElementById("lowercase-x");
-      lowercaseCheck.classList.remove("fa-times");
-      lowercaseCheck.classList.add("fa-check");
-      lowercaseCheck.style.color = "green";
-      lowe = 20;
-    } else {
-      document.getElementById("lowercase").style.color = "red";
-      document.getElementById("lowercase").style.fontWeight = "900";
-      const lowercaseCheck = document.getElementById("lowercase-x");
-      lowercaseCheck.classList.remove("fa-check");
-      lowercaseCheck.classList.add("fa-times");
-      lowercaseCheck.style.color = "red";
-      passwordCardF = false;
-      lowe = 0;
-    }
-    if (uppercase.test(data)) {
-      document.getElementById("uppercase").style.color = "green";
-      document.getElementById("uppercase").style.fontWeight = "900";
-      const uppercaseCheck = document.getElementById("uppercase-x");
-      uppercaseCheck.classList.remove("fa-times");
-      uppercaseCheck.classList.add("fa-check");
-      uppercaseCheck.style.color = "green";
-      upper = 20;
-    } else {
-      document.getElementById("uppercase").style.color = "red";
-      document.getElementById("uppercase").style.fontWeight = "900";
-      const uppercaseCheck = document.getElementById("uppercase-x");
-      uppercaseCheck.classList.remove("fa-check");
-      uppercaseCheck.classList.add("fa-times");
-      uppercaseCheck.style.color = "red";
-      passwordCardF = false;
-      upper = 0;
-    }
-    if (specialsymbols.test(data)) {
-      document.getElementById("specialsymbols").style.color = "green";
-      document.getElementById("specialsymbols").style.fontWeight = "900";
-      const specialsymbolsCheck = document.getElementById("specialsymbols-x");
-      specialsymbolsCheck.classList.remove("fa-times");
-      specialsymbolsCheck.classList.add("fa-check");
-      specialsymbolsCheck.style.color = "green";
-      symb = 20;
-    } else {
-      document.getElementById("specialsymbols").style.color = "red";
-      document.getElementById("specialsymbols").style.fontWeight = "900";
-      const specialsymbolsCheck = document.getElementById("specialsymbols-x");
-      specialsymbolsCheck.classList.remove("fa-check");
-      specialsymbolsCheck.classList.add("fa-times");
-      specialsymbolsCheck.style.color = "red";
-      passwordCardF = false;
-      symb = 0;
-    }
-    if (data.length <= 8) {
-      document.getElementById("lengthofPassword").style.color = "red";
-      document.getElementById("lengthofPassword-x").style.color = "red";
-      document.getElementById("lengthofPassword").style.fontWeight = "900";
-      const lengthofPasswordCheck =
-        document.getElementById("lengthofPassword-x");
-      lengthofPasswordCheck.classList.remove("fa-check");
-      lengthofPasswordCheck.classList.add("fa-times");
-      lengthofPasswordCheck.style.color = "red";
-      passwordCardF = false;
-      char = 0;
-    } else {
-      document.getElementById("lengthofPassword").style.color = "green";
-      document.getElementById("lengthofPassword").style.fontWeight = "900";
-      const lengthofPasswordCheck =
-        document.getElementById("lengthofPassword-x");
-      lengthofPasswordCheck.classList.remove("fa-times");
-      lengthofPasswordCheck.classList.add("fa-check");
-      lengthofPasswordCheck.style.color = "green";
-      char = 20;
-    }
-    if (passwordCardF) {
-      document.getElementById("passwordCard").style.display = "none";
-    } else {
-      document.getElementById("passwordCard").style.display = "block";
-    }
-
-    setPassword(data);
-    if (confirm_password !== data && confirm_password != "") {
-      document.getElementById("passwordNotMatch").style.display = "block";
-    } else {
-      document.getElementById("passwordNotMatch").style.display = "none";
-    }
-    let Strength = num + lowe + upper + symb + char;
-    setProgress(Strength);
-    if (Strength <= 33) {
-      setpasswordStrength("Very Week");
-      document.getElementById("strength").style.color = "#EA5354";
-    } else if (Strength >= 34 && Strength <= 65) {
-      document.getElementById("strength").style.color = "#FF9E43";
-      setpasswordStrength("Week");
-    } else if (Strength >= 66 && Strength <= 100) {
-      setpasswordStrength("Strength");
-      document.getElementById("strength").style.color = "#FF9E43";
-    }
-  };
-  const validateConfirmPassword = (conf_password) => {
-    setConfirmPassword(conf_password);
-    if (conf_password !== password) {
-      document.getElementById("passwordNotMatch").style.display = "block";
-    } else {
-      document.getElementById("passwordNotMatch").style.display = "none";
-    }
-  };
-
-  const postInfo = (
-    first_name,
-    last_name,
-    email,
-    password,
-    password2,
-    mobile
-  ) => {
-    useJwt
-      .register({ first_name, last_name, email, password, password2, mobile })
-      .then((res) => {
-        if (res?.status === 201) {
-          setOpen(!open);
-          setLoader((boolean) => !boolean);
-        }
-      })
-      .catch((err) => {
-        if (err?.response?.status === 400) {
-          setLoader((boolean) => !boolean);
-          setCanvasOpen(!canvasOpen);
-          setEmailAddress(err?.response?.data?.email_address);
-        }
-      });
-  };
-
-  const checkEmptyFeild = (data) => {
-    for (const key in data) {
-      if (data[key].length === 0) {
-        setError(key, {
-          type: "manual",
-          message: `Please enter a valid ${key}`,
-        });
-      }
-      if (key === "terms" && data.terms === false) {
-        setError("terms", {
-          type: "manual",
-        });
-      }
-    }
-    setLoader((boolean) => !boolean);
-  };
-  const onSubmit = (data) => {
-    setLoader((boolean) => !boolean);
-    setCountryCode(data.country_code);
-    const tempData = { ...data };
-    let {
-      first_name,
-      last_name,
-      email,
-      password,
-      password2,
-      mobile,
-      country_code,
-    } = data;
-    setCheckData(() => {
-      let { email, mobile } = data;
-      return {
-        email,
-        mobile,
-        countryCode: country_code,
-      };
-    });
-
-    mobile = country_code && country_code.toString() + mobile.toString();
-    const mobileRegex = /^([+]\d{2,})\(?\d{3}\)?[\s.-]?\d{3}?[\s.-]?\d{4}$/gm;
-    if (!mobile?.match(mobileRegex)) {
-      document.getElementById("mobile_id").innerHTML = "Invalid mobile no.";
-      document.getElementById("mobile_id").style.color = "red";
-    } else {
-      document.getElementById("mobile_id").style.display = "none";
-    }
-    if (Object.values(tempData).every((field) => field?.length > 0)) {
-      if (password !== password2) return setLoader((boolean) => !boolean);
-      postInfo(first_name, last_name, email, password, password2, mobile);
-    } else {
-      checkEmptyFeild(data);
-    }
-  };
-
-  const country = country_code.map((data, idx) => {
-    return {
-      value: data.dial_code,
-      label: ` ${data.code}`,
-      name: data.name,
-      flag: <ReactCountryFlag countryCode={data.code} svg />,
-    };
-  });
-
-  const page = () => {
-    if (open) {
-      return <RegistrationVerfication open={open} checkData={checkData} />;
-    }
-  };
-
-  const formOptionLabel = ({ value, label, name, flag }) => {
-    return (
-      <div style={{ display: "flex" }}>
-        <div style={{ marginLeft: "10px" }}>
-          {flag} {label} {value}
-        </div>
-      </div>
-    );
-  };
-
-  const AlreadyExist = () => {
-    if (canvasOpen)
-      return (
-        <EmailAndPhoneExist
-          setCanvasOpen={setCanvasOpen}
-          canvasOpen={canvasOpen}
-          email={emailAddress}
-        />
-      );
-  };
-
-  function containsSpecialChars(str) {
-    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (specialChars.test(str)) {
-      setError("first_name", {
-        message: "special characters are not allowed",
-      });
-    } else {
-      clearErrors("first_name");
-    }
-    return str;
-  }
+const RegisterBasic = () => {
   return (
-    <div className="auth-wrapper auth-cover">
-      {page()}
-      {AlreadyExist()}
-      <Row className="auth-inner m-0">
-        <Link className="brand-logo" to="/" onClick={(e) => e.preventDefault()}>
-          {/* <img
-            src="../../../../src/"
-            alt="LockTrustLogo"
-            width="500"
-            height="600"
-          /> */}
-        </Link>
-        <Col className="d-none d-lg-flex align-items-center p-5" lg="8" sm="12">
-          <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
-            <img className="img-fluid" src={source} alt="Login Cover" />
-          </div>
-        </Col>
-        <Col
-          className="d-flex align-items-center auth-bg px-2 p-lg-5"
-          lg="4"
-          sm="12"
-        >
-          <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
-            <CardTitle tag="h2" className="fw-bold mb-1">
+    <div className='auth-wrapper auth-basic px-2'>
+      <div className='auth-inner my-2'>
+        <Card className='mb-0'>
+          <CardBody>
+            <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
+              <svg viewBox='0 0 139 95' version='1.1' height='28'>
+                <defs>
+                  <linearGradient x1='100%' y1='10.5120544%' x2='50%' y2='89.4879456%' id='linearGradient-1'>
+                    <stop stopColor='#000000' offset='0%'></stop>
+                    <stop stopColor='#FFFFFF' offset='100%'></stop>
+                  </linearGradient>
+                  <linearGradient x1='64.0437835%' y1='46.3276743%' x2='37.373316%' y2='100%' id='linearGradient-2'>
+                    <stop stopColor='#EEEEEE' stopOpacity='0' offset='0%'></stop>
+                    <stop stopColor='#FFFFFF' offset='100%'></stop>
+                  </linearGradient>
+                </defs>
+                <g id='Page-1' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
+                  <g id='Artboard' transform='translate(-400.000000, -178.000000)'>
+                    <g id='Group' transform='translate(400.000000, 178.000000)'>
+                      <path
+                        d='M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z'
+                        id='Path'
+                        className='text-primary'
+                        style={{ fill: 'currentColor' }}
+                      ></path>
+                      <path
+                        d='M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z'
+                        id='Path'
+                        fill='url(#linearGradient-1)'
+                        opacity='0.2'
+                      ></path>
+                      <polygon
+                        id='Path-2'
+                        fill='#000000'
+                        opacity='0.049999997'
+                        points='69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325'
+                      ></polygon>
+                      <polygon
+                        id='Path-2'
+                        fill='#000000'
+                        opacity='0.099999994'
+                        points='69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338'
+                      ></polygon>
+                      <polygon
+                        id='Path-3'
+                        fill='url(#linearGradient-2)'
+                        opacity='0.099999994'
+                        points='101.428699 0 83.0667527 94.1480575 130.378721 47.0740288'
+                      ></polygon>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <h2 className='brand-text text-primary ms-1'>Vuexy</h2>
+            </Link>
+            <CardTitle tag='h4' className='mb-1'>
               Adventure starts here 🚀
             </CardTitle>
-            <CardText className="mb-2">
-              Make your app management easy and fun!
-            </CardText>
-
-            <Form
-              className="auth-register-form mt-2 d-flex flex-column align-items-basline"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="mb-1">
-                <Label className="form-label" htmlFor="register-firstname">
-                  First Name
+            <CardText className='mb-2'>Make your app management easy and fun!</CardText>
+            <Form className='auth-register-form mt-2' onSubmit={e => e.preventDefault()}>
+              <div className='mb-1'>
+                <Label className='form-label' for='register-username'>
+                  Username
                 </Label>
-                <Controller
-                  id="first_name"
-                  name="first_name"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      autoFocus
-                      placeholder="john"
-                      invalid={errors.first_name && true}
-                      onChange={(e) =>
-                        field.onChange(containsSpecialChars(e.target.value))
-                      }
-                    />
-                  )}
-                />
-                {errors.first_name ? (
-                  <FormFeedback>{errors.first_name.message}</FormFeedback>
-                ) : null}
+                <Input type='text' id='register-username' placeholder='johndoe' autoFocus />
               </div>
-              <div className="mb-1">
-                <Label className="form-label" htmlFor="register-lastname">
-                  Last Name
-                </Label>
-                <Controller
-                  id="last_name"
-                  name="last_name"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      autoFocus
-                      placeholder="doe"
-                      invalid={errors.last_name && true}
-                      onChange={(e) =>
-                        field.onChange(containsSpecialChars(e.target.value))
-                      }
-                    />
-                  )}
-                />
-                {errors.last_name ? (
-                  <FormFeedback>{errors.last_name.message}</FormFeedback>
-                ) : null}
-              </div>
-              <div className="mb-1">
-                <Label className="form-label" htmlFor="register-email">
+              <div className='mb-1'>
+                <Label className='form-label' for='register-email'>
                   Email
                 </Label>
-                <Controller
-                  id="email"
-                  name="email"
-                  control={control}
-                  defaultValue=""
-                  required
-                  render={({ field }) => (
-                    <Input
-                      type="email"
-                      placeholder="john@example.com"
-                      invalid={errors.email && true}
-                      {...field}
-                    />
-                  )}
-                />
-                <p id="email_id" />
-                {errors.email ? (
-                  <FormFeedback>{errors.email.message}</FormFeedback>
-                ) : null}
+                <Input type='email' id='register-email' placeholder='john@example.com' />
               </div>
-              <div className="d-flex justify-content-between mb-1">
-                <Col sm="4">
-                  <Label className="form-label" htmlFor="register-email">
-                    Country Code
-                  </Label>
-                  <Select
-                    options={country}
-                    defaultValue={country[0]}
-                    formatOptionLabel={formOptionLabel}
-                    onChange={(e) => setValue("country_code", e.value)}
-                  />
-                </Col>
-                <div className="col-lg-8">
-                  <Label className="form-label" htmlFor="register-mobile">
-                    Phone
-                  </Label>
-                  <Controller
-                    id="mobile"
-                    name="mobile"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Input
-                        type="number"
-                        placeholder="88xxxxxxxx"
-                        invalid={errors.mobile && true}
-                        {...field}
-                      />
-                    )}
-                  />
-                  <p id="mobile_id" />
-                  {errors.mobile ? (
-                    <FormFeedback>{errors.mobile.message}</FormFeedback>
-                  ) : null}
-                </div>
-              </div>
-              <div className="mb-1">
-                <Label className="form-label" htmlFor="register-password">
+              <div className='mb-1'>
+                <Label className='form-label' for='register-password'>
                   Password
                 </Label>
-                <Controller
-                  id="password"
-                  name="password"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <InputPasswordToggle
-                      className="input-group-merge"
-                      invalid={errors.password && true}
-                      onCopy="return false"
-                      onPaste="return false"
-                      {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        validatePassword(e.target.value);
-                      }}
-                    />
-                  )}
-                />
+                <InputPasswordToggle className='input-group-merge' id='register-password' />
               </div>
-              <div
-                id="passwordCard"
-                style={{
-                  height: "%",
-                  opacity: "0",
-                  display: "none",
-                }}
-              >
-                <div>
-                  <p>
-                    Password Strength:
-                    <span id="strength" className="ms-1">
-                      {passwordStrength}
-                    </span>
-                  </p>
-                  <Progress color={colorVal(progress)} value={progress} />
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <i
-                    id="uppercase-x"
-                    className="fa fa-times me-1"
-                    aria-hidden="true"
-                  ></i>
-                  <p id="uppercase">Atleast 1 uppercase</p>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <i
-                    id="lowercase-x"
-                    className="fa fa-times me-1"
-                    aria-hidden="true"
-                  ></i>
-                  <p id="lowercase">Atleast 1 lowercase</p>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <i
-                    id="specialsymbols-x"
-                    className="fa fa-times me-1"
-                    aria-hidden="true"
-                  ></i>
-                  <p id="specialsymbols">Atleast 1 special symbols</p>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <i
-                    id="number-x"
-                    className="fa fa-times me-1"
-                    aria-hidden="true"
-                  ></i>
-                  <p id="number">Atleast 1 number</p>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <i
-                    id="lengthofPassword-x"
-                    className="fa fa-times me-1"
-                    aria-hidden="true"
-                  ></i>
-                  <p id="lengthofPassword">Atleast 8 Characters</p>
-                </div>
-              </div>
-              <div className="mb-1">
-                <Label className="form-label" htmlFor="register-password">
-                  Confirm Password
+              <div className='form-check mb-1'>
+                <Input type='checkbox' id='terms' />
+                <Label className='form-check-label' for='terms'>
+                  I agree to
+                  <a className='ms-25' href='/' onClick={e => e.preventDefault()}>
+                    privacy policy & terms
+                  </a>
                 </Label>
-                <Controller
-                  id="password2"
-                  name="password2"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <InputPasswordToggle
-                      className="input-group-merge"
-                      invalid={errors.password2 && true}
-                      {...field}
-                      onCopy="return false"
-                      onPaste="return false"
-                      onChange={(e) => {
-                        field.onChange(e);
-                        validateConfirmPassword(e.target.value);
-                      }}
-                    />
-                  )}
-                />
               </div>
-              <p
-                id="passwordNotMatch"
-                style={{ display: "none", color: "red" }}
-              >
-                password not matched
-              </p>
-
-              <RegistrationVerification data={checkData} />
-              <span className="mt-2"></span>
-              <Button type="submit" color="primary" disabled={loader}>
-                Sign up{" "}
-                <Spinner
-                  color="light"
-                  size="sm"
-                  style={{ visibility: loader ? "visible" : "hidden" }}
-                >
-                  Loading...
-                </Spinner>
+              <Button color='primary' block>
+                Sign up
               </Button>
-              {/* <button type="submit" onClick={handleSubmit(onSubmit)}>Sing up</button> */}
             </Form>
-            <div>
-              <p className="text-center mt-2">
-                <span className="me-25">Already have an account?</span>
-                <Link to="/login">
-                  <span>Sign in instead</span>
-                </Link>
-              </p>
+            <p className='text-center mt-2'>
+              <span className='me-25'>Already have an account?</span>
+              <Link to='/pages/login-basic'>
+                <span>Sign in instead</span>
+              </Link>
+            </p>
+            <div className='divider my-2'>
+              <div className='divider-text'>or</div>
             </div>
-            {/* <div className="divider my-2">
-              <div className="divider-text">or</div>
-            </div> */}
-            {/* <div className="auth-footer-btn d-flex justify-content-center">
-              <Button color="facebook">
+            <div className='auth-footer-btn d-flex justify-content-center'>
+              <Button color='facebook'>
                 <Facebook size={14} />
               </Button>
-              <Button color="twitter">
+              <Button color='twitter'>
                 <Twitter size={14} />
               </Button>
-              <Button color="google">
+              <Button color='google'>
                 <Mail size={14} />
               </Button>
-            </div> */}
-          </Col>
-        </Col>
-      </Row>
+              <Button className='me-0' color='github'>
+                <GitHub size={14} />
+              </Button>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default RegisterBasic
