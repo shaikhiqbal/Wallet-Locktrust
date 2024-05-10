@@ -24,6 +24,7 @@ const Escrow = lazy(() => import("../../views/pages/walletpages/Escrow"));
 const Invoice = lazy(() => import("../../views/pages/walletpages/Invoice"));
 const Calendar = lazy(() => import("../../views/pages/walletpages/Calendar"));
 const Profile = lazy(() => import("../../views/pages/walletpages/Profile"));
+const Support = lazy(() => import("../../views/pages/walletpages/Support"));
 const Currencyconversion = lazy(() =>
   import("../../views/pages/walletpages/Currencyconversion")
 );
@@ -85,6 +86,10 @@ const Admindashboard = [
   {
     path: "/admin/profile",
     element: <Profile />,
+  },
+  {
+    path: "/admin/support",
+    element: <Support />,
   },
 ];
 

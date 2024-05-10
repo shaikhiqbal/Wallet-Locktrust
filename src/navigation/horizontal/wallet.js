@@ -1,4 +1,4 @@
-import { Circle, FileText, Home } from "react-feather";
+import { Circle, FileText, Home, Settings } from "react-feather";
 
 export default [
   {
@@ -16,19 +16,13 @@ export default [
         id: "myprofile",
         title: "My Profile",
         icon: <Home />,
-        navLink: "/admin/profile", 
+        navLink: "/admin/profile",
       },
       {
         id: "accountSettings",
         title: "Account Setting",
         icon: <Home />,
         navLink: "/admin/accountsettings",
-      },
-      {
-        id: "support",
-        title: "Support",
-        icon: <Home />,
-        navLink: "#",
       },
     ],
   },
@@ -147,6 +141,12 @@ export default [
     title: "Switch Account",
     icon: <Home />,
     navLink: "/admin/switchaccount",
+  },
+  {
+    id: "support",
+    title: "Support",
+    icon: <Settings />,
+    navLink: "/admin/support",
   },
   {
     id: "logout",
