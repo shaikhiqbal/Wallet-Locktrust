@@ -22,14 +22,15 @@ export default [
         id: "accountSettings",
         title: "Account Setting",
         icon: <Home />,
-        navLink: "/admin/accountsettings",
+        navLink: "/admin/support",
+        
       },
-      /*  {
-        id: "support",
-        title: "Support",
-        icon: <Home />,
-        navLink: "#",
-      }, */
+      // /*  {
+      //   id: "support",
+      //   title: "Support",
+      //   icon: <Home />,
+      //   navLink: "#",
+      // }, */
     ],
   },
   {
@@ -148,12 +149,12 @@ export default [
     icon: <Home />,
     navLink: "/admin/switchaccount",
   },
-  {
-    id: "support",
-    title: "Support",
-    icon: <Settings />,
-    navLink: "/admin/support",
-  },
+  // {
+  //   id: "support",
+  //   title: "Support",
+  //   icon: <Settings />,
+  //   navLink: "/admin/support",
+  // },
   {
     id: "logout",
     title: "Logout",

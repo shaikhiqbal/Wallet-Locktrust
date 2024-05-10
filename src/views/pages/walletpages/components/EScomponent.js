@@ -11,6 +11,7 @@ import {
   Col,
   Label,
   Form,
+  Button,
 } from "reactstrap";
 
 export const TabsFilled = ({ tabs, cp }) => {
@@ -981,6 +982,10 @@ export const MultiPartyEscrow = () => {
         <button type="button" className="btn btn-primary" onClick={addRow}>
           Add Row
         </button>
+      </div>
+
+      <div className="d-flex justify-content-center">
+        <Button color="primary">Submit</Button>
       </div>
     </Form>
   );

@@ -102,8 +102,12 @@ const Admindashboard = [
   {
     path: "/admin/support",
     element: <Support />,
+   
+  },
+  {
     path: "/admin/alltransactions",
     element: <Alltransactions />,
+   
   },
   {
     path: "/admin/banktransactions",

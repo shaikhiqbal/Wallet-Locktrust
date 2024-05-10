@@ -16,7 +16,7 @@ const c2 = [
     id: 5,
     icon: <Codepen />,
     title: "ADD WITH",
-    subtitle: "	Deposite check ",
+    subtitle: "Deposite check ",
     modalTarget: "#wiretransfer",
   },
   {

@@ -15,7 +15,16 @@ import {
   Table,
 } from "reactstrap";
 import React, { useContext, useEffect, useState } from "react";
-import { Activity, AlertOctagon, Cpu, Server } from "react-feather";
+import {
+  Activity,
+  AlertOctagon,
+  Bold,
+  Cpu,
+  Edit,
+  Eye,
+  Server,
+  Trash,
+} from "react-feather";
 
 import StatsHorizontal from "@components/widgets/stats/StatsHorizontal";
 import { Col, Row } from "reactstrap";
@@ -31,33 +40,37 @@ import Modalform from "./Modalform";
 import { Navigate } from "react-router-dom";
 import { AddEscrow } from "../../walletpages/components/EScomponent";
 
-export const WiresCp = () => {
-  const bankDetails = {
-    "Name on Account": "LockTrust",
-    "Bank Name": "Locktrust Bank",
-    Address: "Locktrust Address",
-    City: "SALT LAKE",
-    State: "UTHA",
-    "Account Number": "LOCK TRUST NUMBER",
-    "Routing Number": "LOCK TRUST ROUTING",
-  };
+// export const WiresCp = () => {
+//   const bankDetails = {
+//     "Name on Account": "LockTrust",
+//     "Bank Name": "Locktrust Bank",
+//     Address: "Locktrust Address",
+//     City: "SALT LAKE",
+//     State: "UTHA",
+//     "Account Number": "LOCK TRUST NUMBER",
+//     "Routing Number": "LOCK TRUST ROUTING",
+//   };
 
-  return (
-    <Row>
-      <Col className="budget-wrapper" md="12" xs="12">
-        <ListGroup>
-          {Object.keys(bankDetails).map((el) => (
-            <ListGroupItem className="d-flex justify-content-between align-items-center">
-              <span>{el}</span>
-              {/* <Badge color="primary" pill> */}
-              {bankDetails[el]}
-              {/* </Badge> */}
-            </ListGroupItem>
-          ))}
-        </ListGroup>
-      </Col>
-    </Row>
-  );
+//   return (
+//     <Row>
+//       <Col className="budget-wrapper" md="12" xs="12">
+//         <ListGroup>
+//           {Object.keys(bankDetails).map((el) => (
+//             <ListGroupItem className="d-flex justify-content-between align-items-center">
+//               <span>{el}</span>
+//               {/* <Badge color="primary" pill> */}
+//               {bankDetails[el]}
+//               {/* </Badge> */}
+//             </ListGroupItem>
+//           ))}
+//         </ListGroup>
+//       </Col>
+//     </Row>
+//   );
+// };
+
+export const WiresCp = () => {
+  return <BankTable />;
 };
 
 export const AddCardForm = () => {
@@ -376,6 +389,9 @@ export const AddCardForm = () => {
           </div>
         </div>
       </div>
+      <div>
+        <Button color="primary">Submit</Button>
+      </div>
     </div>
   );
 };
@@ -573,101 +589,104 @@ export const DepCheck = () => {
   );
 };
 
-// const VoucherTable = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const toggle = () => setIsOpen(!isOpen);
-//   return (
-//     <Row>
-//       <Col xs="12">
-//         <Table>
-//           <thead>
-//             <tr>
-//               <th>Voucher No.</th>
-//               <th>Amount</th>
-//               <th>-</th>
-//               <th>-</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             <tr>
-//               <td>ZRKQCw23iyX3GIGK</td>
-//               <td>112</td>
-//               <td>
-//                 <Button color="primary" className="btn-sm" onClick={toggle}>
-//                   Transfer
-//                 </Button>
-//               </td>
-//               <td>
-//                 <Button color="secondry" className="btn-sm">
-//                   Redeem
-//                 </Button>
-//               </td>
-//             </tr>
-//             <tr>
-//               <td>sT1Cpa3CzASUDW1J</td>
-//               <td>123</td>
-//               <td>
-//                 <Button color="primary" className="btn-sm" onClick={toggle}>
-//                   Transfer
-//                 </Button>
-//               </td>
-//               <td>
-//                 <Button color="secondry" className="btn-sm">
-//                   Redeem
-//                 </Button>
-//               </td>
-//             </tr>
-//           </tbody>
-//         </Table>
-//       </Col>
-//       <Col xs="12" className="p-4">
-//         <Collapse isOpen={isOpen}>
-//           <div>
-//             <h4>Voucher Transfer</h4>
-//           </div>
-//           <Row className="mb-1">
-//             <Label sm="3" for="name">
-//               Transfer to
-//             </Label>
-//             <Col sm="9">
-//               <Input type="text" name="name" id="name" />
-//             </Col>
-//           </Row>
-//           <Row className="mb-1">
-//             <Label sm="3" for="name">
-//               Amount
-//             </Label>
-//             <Col sm="9">
-//               <Input
-//                 type="text"
-//                 value={45}
-//                 disabled={true}
-//                 name="name"
-//                 id="name"
-//               />
-//             </Col>
-//           </Row>
-//           <Row className="mb-1">
-//             <Label sm="3" for="name">
-//               Descripation
-//             </Label>
-//             <Col sm="9">
-//               <Input type="textarea" name="name" id="name" />
-//             </Col>
-//           </Row>
+const VoucherTable2 = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+  return (
+    <Row>
+      <Col xs="12">
+        <Table>
+          <thead>
+            <tr>
+              <th>Voucher No.</th>
+              <th>Amount</th>
+              <th>-</th>
+              <th>-</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ZRKQCw23iyX3GIGK</td>
+              <td>112</td>
+              <td>
+                <Button color="primary" className="btn-sm" onClick={toggle}>
+                  Transfer
+                </Button>
+              </td>
+              <td>
+                <Button color="secondry" className="btn-sm">
+                  Redeem
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>sT1Cpa3CzASUDW1J</td>
+              <td>123</td>
+              <td>
+                <Button color="primary" className="btn-sm" onClick={toggle}>
+                  Transfer
+                </Button>
+              </td>
+              <td>
+                <Button color="secondry" className="btn-sm">
+                  Redeem
+                </Button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Col>
+      <Col xs="12" className="p-4">
+        <Collapse isOpen={isOpen}>
+          <div>
+            <h4>Voucher Transfer</h4>
+          </div>
+          <Row className="mb-1">
+            <Label sm="3" for="name">
+              Transfer to
+            </Label>
+            <Col sm="9">
+              <Input type="text" name="name" id="name" />
+            </Col>
+          </Row>
+          <Row className="mb-1">
+            <Label sm="3" for="name">
+              Amount
+            </Label>
+            <Col sm="9">
+              <Input
+                type="text"
+                value={45}
+                disabled={true}
+                name="name"
+                id="name"
+              />
+            </Col>
+          </Row>
+          <Row className="mb-1">
+            <Label sm="3" for="name">
+              Descripation
+            </Label>
+            <Col sm="9">
+              <Input type="textarea" name="name" id="name" />
+            </Col>
+          </Row>
 
-//           <div className="d-flex justify-content-end gap-2">
-//             <Button color="danger">Submit</Button>
-//             <Button color="secondry" onClick={toggle}>
-//               Cancel
-//             </Button>
-//           </div>
-//         </Collapse>
-//       </Col>
-//     </Row>
-//   );
-// };
-const VoucherTable=()=> <Navigate to={"/admin/escrow"} replace={true}/>
+          <div className="d-flex justify-content-end gap-2">
+            <Button color="danger">Submit</Button>
+            <Button color="secondry" onClick={toggle}>
+              Cancel
+            </Button>
+          </div>
+        </Collapse>
+      </Col>
+    </Row>
+  );
+};
+
+
+
+const VoucherTable = () => <Navigate to={"/admin/escrow"} replace={true} />;
 
 const QR = () => (
   <div className="d-flex flex-column justify-content-center align-items-center">
@@ -694,7 +713,7 @@ export const C2 = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [cpIndex, setCpIndex] = useState(0);
 
-  const CP = [CardTable, DepCheck, VoucherTable, QR, WiresCp];
+  const CP = [CardTable, DepCheck, VoucherTable2, QR, WiresCp];
 
   const toggled = (id = 0) => {
     if (typeof id == "number") setCpIndex(id);
@@ -717,7 +736,12 @@ export const C2 = ({ data }) => {
           </Col>
         );
       })}
-      <Modalform open={open} toggle={toggled} Component={CP[cpIndex]} />
+      <Modalform
+        open={open}
+        toggle={toggled}
+        Component={CP[cpIndex]}
+        size={cpIndex == CP.length - 1 ? "modal-xl" : "modal-lg"}
+      />
     </Row>
   );
 };
@@ -765,7 +789,7 @@ export const C1 = () => {
   );
 };
 
-const BankTable = () => {
+export function BankTable() {
   const data = [
     {
       id: 1,
@@ -948,7 +972,7 @@ const BankTable = () => {
       />
     </Row>
   );
-};
+}
 
 export const C3 = () => {
   const [open, setOpen] = useState(false);
@@ -973,7 +997,6 @@ export const C3 = () => {
     {
       t: "Escrow",
       icon: "E",
-      
     },
     {
       t: "QR Code",
@@ -987,7 +1010,6 @@ export const C3 = () => {
 
   return (
     <Row className="w-100">
-
       {textArray.map((el, id) => {
         return (
           <Col xl="4" md="4" sm="6">
@@ -1014,7 +1036,18 @@ export const C3 = () => {
 
 export const C4 = () => {
   const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
+  const [index, setIndex] = useState(false);
+
+  const toggle = (id) => {
+    if (id == 0) {
+      setIndex(true);
+    } else if (index) {
+      setIndex(false);
+    }
+    setOpen(!open);
+  };
+
+  // SavingSettings
 
   const data = [
     {
@@ -1043,8 +1076,8 @@ export const C4 = () => {
     <Row className="w-100 justify-content-center">
       {data.map((el, id) => {
         return (
-          <Col xl="3" md="4" sm="6">
-            <div onClick={toggle}>
+          <Col xl="3" md="4" sm="6" key={id}>
+            <div onClick={() => toggle(id)}>
               <StatsVertical
                 icon={el.icon}
                 color="warning"
@@ -1055,7 +1088,1080 @@ export const C4 = () => {
           </Col>
         );
       })}
-      <Modalform open={open} toggle={toggle} Component={ComingSoon} />
+      <Modalform
+        open={open}
+        toggle={toggle}
+        Component={index ? SavingSettings : ComingSoon}
+        size={index ? "modal-xl" : "modal-lg"}
+      />
     </Row>
   );
 };
+
+export function AddTimeBased() {
+  return (
+    <div className="col-md-6" id="timeBased">
+      <div className="form-group my-1">
+        <div className="controls">
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="one_time"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck1"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck1"
+              >
+                One Time
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="daily"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck2"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck2"
+              >
+                Daily
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="weekly"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck3"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck3"
+              >
+                Weekly
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="once_in_two_weeks"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck4"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck4"
+              >
+                Once In Two Weeks
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="monthly"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck6"
+              />
+              <label
+                className="custom-control-label ms-1"
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck6"
+              >
+                Monthly
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="quaterly"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck7"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck7"
+              >
+                Quaterly
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="half_yearly"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck8"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck8"
+              >
+                Half Yearly
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="custom-control custom-checkbox mb-1">
+              <input
+                type="checkbox"
+                defaultValue="yearly"
+                name="time_based[]"
+                className="custom-control-input time_based me-1"
+                id="customCheck9"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customCheck9"
+              >
+                Yearly
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div className="form-group" style={{ display: "none" }} id="weekdayDiv">
+        <label className="control-label">WeekDay For Weekly:-</label>
+        <select name="weekday" id="weekday" className="form-control">
+          <option value="">--Select Day--</option>
+          <option value="sunday">Sunday</option>
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+        </select>
+      </div>
+      <div
+        className="form-group"
+        style={{ display: "none" }}
+        id="twoweekdayDiv"
+      >
+        <label className="control-label">WeekDay For Once In Two Week:-</label>
+        <select name="twoweekday" id="twoweekday" className="form-control">
+          <option value="">--Select Day--</option>
+          <option value="sunday">Sunday</option>
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+        </select>
+      </div>
+      <div className="form-group my-1">
+        <label className="control-label">Source Of Funds:</label>
+        {/* <input type="text" class="form-control"> */}
+        <div className="custom-control custom-radio">
+          <input
+            type="radio"
+            id="customRadio3"
+            name="timesourceofFund"
+            className="custom-control-input timefund"
+            defaultValue="wallet"
+          />
+          <label
+            className="custom-control-label ms-1 "
+            style={{ whiteSpace: "nowrap" }}
+            htmlFor="customRadio3"
+          >
+            Wallet
+          </label>
+        </div>
+        <div className="custom-control custom-radio">
+          <input
+            type="radio"
+            id="customRadio4"
+            name="timesourceofFund"
+            className="custom-control-input timefund"
+            defaultValue="bank"
+          />
+          <label
+            className="custom-control-label ms-1 "
+            style={{ whiteSpace: "nowrap" }}
+            htmlFor="customRadio4"
+          >
+            Bank
+          </label>
+        </div>
+        <div className="custom-control custom-radio">
+          <input
+            type="radio"
+            id="customRadio5"
+            name="timesourceofFund"
+            className="custom-control-input timefund"
+            defaultValue="card"
+          />
+          <label
+            className="custom-control-label ms-1 "
+            style={{ whiteSpace: "nowrap" }}
+            htmlFor="customRadio5"
+          >
+            Card
+          </label>
+        </div>
+      </div>
+      <div className="form-group my-1">
+        <label>Amount:</label>
+        <input
+          type="text"
+          name="transactionAmount"
+          id="transactionAmount"
+          className="form-control"
+          defaultValue=""
+          autoComplete="off"
+        />
+      </div>
+    </div>
+  );
+}
+
+export function AddEventBased() {
+  return (
+    <form
+      id="EventsavingsForm"
+      className="form-horizontal"
+      method="post"
+      autoComplete="off"
+    >
+      <h3 className="box-title m-t-40" />
+      <hr />
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-group my-1">
+            <input
+              type="hidden"
+              name="EventactionType"
+              id="EventactionType"
+              defaultValue="Add"
+            />
+            <input
+              type="hidden"
+              name="EventrecordID"
+              id="EventrecordID"
+              defaultValue={0}
+            />
+            <input
+              type="hidden"
+              name="event_based_old"
+              id="event_based_old"
+              defaultValue={0}
+            />
+            {/* <div class="custom-control custom-radio">
+                              <input type="radio" id="customRadio2" name="option" class="custom-control-input con" value="event">
+                              <label class="custom-control-label" for="customRadio2">Event</label>
+                          </div> */}
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-md-6" id="eventBased">
+          <div className="form-group my-1">
+            <label className="control-label">Source Of Funds:</label>
+            <div className="custom-control custom-radio">
+              <input
+                type="radio"
+                id="customRadio6"
+                name="eventsourceofFund"
+                className="custom-control-input eventfund"
+                defaultValue="wallet"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customRadio6"
+              >
+                Wallet
+              </label>
+            </div>
+            <div className="custom-control custom-radio">
+              <input
+                type="radio"
+                id="customRadio7"
+                name="eventsourceofFund"
+                className="custom-control-input eventfund"
+                defaultValue="bank"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customRadio7"
+              >
+                Bank
+              </label>
+            </div>
+            <div className="custom-control custom-radio">
+              <input
+                type="radio"
+                id="customRadio8"
+                name="eventsourceofFund"
+                className="custom-control-input eventfund"
+                defaultValue="card"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customRadio8"
+              >
+                Card
+              </label>
+            </div>
+          </div>
+          <div className="form-group my-1">
+            <div className="controls">
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="wallet_transfer"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck10"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck10"
+                  >
+                    Wallet To Wallet Transfer
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset id="addMoneyDiv">
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="add_money"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck11"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck11"
+                  >
+                    Adding Money To Wallet
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="send_money"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck12"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck12"
+                  >
+                    Sending Money Outoff Wallet
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="future_transaction"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck13"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck13"
+                  >
+                    Future Transaction
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="currency_conversion"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck14"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck14"
+                  >
+                    Currency Conversion
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="bill_payment"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck15"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck15"
+                  >
+                    Bill Payment
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="custom-control custom-checkbox mb-1">
+                  <input
+                    type="checkbox"
+                    defaultValue="travel_booking"
+                    name="event_based[]"
+                    className="custom-control-input event_based"
+                    id="customCheck16"
+                  />
+                  <label
+                    className="custom-control-label ms-1"
+                    htmlFor="customCheck16"
+                  >
+                    Travel Booking
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div className="form-group my-1">
+            <label className="control-label">Saving Amount</label>
+            <div className="custom-control custom-radio">
+              <input
+                type="radio"
+                id="customRadio9"
+                name="SavingAmount"
+                className="custom-control-input savingamount"
+                defaultValue="per"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customRadio9"
+              >
+                Percentage Of Transaction
+              </label>
+            </div>
+            <div className="custom-control custom-radio">
+              <input
+                type="radio"
+                id="customRadio10"
+                name="SavingAmount"
+                className="custom-control-input savingamount"
+                defaultValue="amount"
+              />
+              <label
+                className="custom-control-label ms-1 "
+                style={{ whiteSpace: "nowrap" }}
+                htmlFor="customRadio10"
+              >
+                Amount
+              </label>
+            </div>
+          </div>
+          <div
+            className="form-group"
+            id="percentageDIV"
+            style={{ display: "none" }}
+          >
+            <label>Percentage Of Transaction:</label>
+            <input
+              type="text"
+              name="transactionper"
+              id="transactionper"
+              className="form-control"
+              placeholder="Percentage Of Transaction"
+              autoComplete="off"
+            />
+          </div>
+          <div
+            className="form-group"
+            id="amountDIV"
+            style={{ display: "none" }}
+          >
+            <label>Amount:</label>
+            <input
+              type="text"
+              name="eventtransactionAmount"
+              id="eventtransactionAmount"
+              className="form-control"
+              autoComplete="off"
+            />
+          </div>
+        </div>
+        <div className="col-md-6" style={{ display: "none" }} id="EventbankDIV">
+          <div className="form-group my-1">
+            <label className="control-label">Select Bank</label>
+            <select
+              name="Eventbankid"
+              id="Eventbankid"
+              className="form-control"
+            >
+              <option value="">--Select Bank--</option>
+              <option value={101}>6005223223(Bank Of Maharashtra)</option>
+              <option value={102}>654654654654(sadasd)</option>
+              <option value={103}>91106296647(UAB Lock Trust)</option>
+              <option value={104}>(test)</option>
+              <option value={105}>2323233(ccxc)</option>
+            </select>
+          </div>
+          <div id="Eventbank_msg" style={{ display: "none" }}>
+            <p>
+              This Transaction will take more than 24 hours.Since we will need
+              bank approval to load wallet.Hence this wallet to wallet transfer
+              instantly.Please select credit card or prepaid card balance to
+              push the transaction instanly.
+            </p>
+          </div>
+        </div>
+        <div className="col-md-6" style={{ display: "none" }} id="EventcardDIV">
+          <div className="form-group my-1">
+            <label className="control-label">Select Card</label>
+            <select
+              name="Eventcardid"
+              id="Eventcardid"
+              className="form-control"
+            >
+              <option value="">--Select Card--</option>
+            </select>
+          </div>
+        </div>
+        <div
+          className="form-group"
+          id="Eventadd_bank_button"
+          style={{ display: "none" }}
+        >
+          <a
+            href="javascript:void(0)"
+            data-toggle="modal"
+            data-target="#addbank_confirmation_modal"
+            className="btn btn-info"
+          >
+            Add Bank
+          </a>
+        </div>
+        <div
+          className="form-group"
+          id="Eventadd_credit_button"
+          style={{ display: "none" }}
+        >
+          <a
+            href="javascript:void(0)"
+            data-toggle="modal"
+            data-target="#addcredit_card"
+            className="btn btn-info"
+          >
+            Add Card
+          </a>
+        </div>
+      </div>
+      <hr />
+      <div className="panel-footer">
+        {/* <input type="hidden" name="fxValidate" id="fxValidate" value="null" />  */}
+        <div className="row">
+          <div className="col-sm-9 col-sm-offset-3">
+            <button type="submit" className="btn btn-primary" id="send">
+              Submit
+            </button>
+            <button
+              type="reset"
+              className="btn btn-default"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+export function SavingSettings() {
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const toggle = (id) => {
+    if (typeof id == "number") {
+      setIndex(id);
+    }
+    setOpen(!open);
+  };
+  const CP = [AddTimeBased, AddEventBased];
+
+  return (
+    <div className="row">
+      <div className="col-6">
+        <div className="card">
+          <div className="card-body">
+            <div className="row button-group">
+              <div className="col-12">
+                <div className="btn-group">
+                  <h4>Time Based</h4>
+                </div>
+                <br />
+              </div>
+              <div>
+                <Button color="primary" onClick={() => toggle(0)}>
+                  Add
+                </Button>
+              </div>
+              {/* <a
+                href="javascript:void(0);"
+                className="btn btn-info"
+                data-toggle="modal"
+                data-target=".time_based_Modal"
+              >
+                Add
+              </a> */}
+            </div>
+            <div className="table-responsive">
+              <div
+                id="example23_wrapper"
+                className="dataTables_wrapper dt-bootstrap4"
+              >
+                <div id="example23_filter" className="dataTables_filter">
+                  <label>
+                    Search:
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="example23"
+                    />
+                  </label>
+                </div>
+                <table
+                  id="example23"
+                  className="display nowrap table table-hover table-striped table-bordered dataTable"
+                  cellSpacing={0}
+                  width="100%"
+                  role="grid"
+                  aria-describedby="example23_info"
+                  style={{ width: "100%" }}
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        className="sorting_asc"
+                        tabIndex={0}
+                        aria-controls="example23"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-sort="ascending"
+                        aria-label="Type: activate to sort column descending"
+                        style={{ width: 134 }}
+                      >
+                        Type
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example23"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Source Of Fund: activate to sort column ascending"
+                        style={{ width: 111 }}
+                      >
+                        Source Of Fund
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example23"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Amount: activate to sort column ascending"
+                        style={{ width: 60 }}
+                      >
+                        Amount
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example23"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Balance: activate to sort column ascending"
+                        style={{ width: 61 }}
+                      >
+                        Balance
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example23"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Action: activate to sort column ascending"
+                        style={{ width: 163 }}
+                      >
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr role="row" className="odd">
+                      <td className="sorting_1">once_in_two_weeks</td>
+                      <td>wallet</td>
+                      <td>10</td>
+                      <td>0</td>
+                      <td className="d-flex gap-1">
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Bold size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Edit size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Eye size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="danger"
+                        >
+                          <Trash size={16} />
+                        </Button.Ripple>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colSpan={3} rowSpan={1}>
+                        Total
+                      </th>
+                      <th rowSpan={1} colSpan={1}>
+                        0
+                      </th>
+                      <th rowSpan={1} colSpan={1} />
+                    </tr>
+                  </tfoot>
+                </table>
+                <div
+                  className="dataTables_info"
+                  id="example23_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 1 to 1 of 1 entries
+                </div>
+                <div
+                  className="dataTables_paginate paging_simple_numbers"
+                  id="example23_paginate"
+                >
+                  <ul className="pagination">
+                    <li
+                      className="paginate_button page-item previous disabled"
+                      id="example23_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="example23"
+                        data-dt-idx={0}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        Previous
+                      </a>
+                    </li>
+                    <li className="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="example23"
+                        data-dt-idx={1}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        1
+                      </a>
+                    </li>
+                    <li
+                      className="paginate_button page-item next disabled"
+                      id="example23_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="example23"
+                        data-dt-idx={2}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="col-6">
+        <div className="card">
+          <div className="card-body">
+            <div className="row button-group">
+              <div className="col-12">
+                <div className="btn-group">
+                  <h4>Event Based</h4>
+                </div>
+              </div>
+              <div>
+                <Button color="primary" onClick={() => toggle(1)}>
+                  Add
+                </Button>
+              </div>
+              {/* <a
+                href="javascript:void(0);"
+                className="btn btn-info"
+                data-toggle="modal"
+                data-target=".Event_based_Modal"
+              >
+                Add
+              </a> */}
+            </div>
+            <div className="table-responsive">
+              <div
+                id="example231_wrapper"
+                className="dataTables_wrapper dt-bootstrap4"
+              >
+                <div id="example231_filter" className="dataTables_filter">
+                  <label>
+                    Search:
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="example231"
+                    />
+                  </label>
+                </div>
+                <table
+                  id="example231"
+                  className="display nowrap table table-hover table-striped table-bordered dataTable"
+                  cellSpacing={0}
+                  width="100%"
+                  role="grid"
+                  aria-describedby="example231_info"
+                  style={{ width: "100%" }}
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        className="sorting_asc"
+                        tabIndex={0}
+                        aria-controls="example231"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-sort="ascending"
+                        aria-label="Type: activate to sort column descending"
+                        style={{ width: 102 }}
+                      >
+                        Type
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example231"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Source Of Fund: activate to sort column ascending"
+                        style={{ width: 120 }}
+                      >
+                        Source Of Fund
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example231"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Amount: activate to sort column ascending"
+                        style={{ width: 66 }}
+                      >
+                        Amount
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example231"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Balance: activate to sort column ascending"
+                        style={{ width: 67 }}
+                      >
+                        Balance
+                      </th>
+                      <th
+                        className="sorting"
+                        tabIndex={0}
+                        aria-controls="example231"
+                        rowSpan={1}
+                        colSpan={1}
+                        aria-label="Action: activate to sort column ascending"
+                        style={{ width: 175 }}
+                      >
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr role="row" className="odd">
+                      <td className="sorting_1">wallet_transfer</td>
+                      <td>wallet</td>
+                      <td>10%</td>
+                      <td>0</td>
+                      <td className="d-flex gap-1">
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Bold size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Edit size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="primary"
+                        >
+                          <Eye size={16} />
+                        </Button.Ripple>
+                        <Button.Ripple
+                          className="btn-icon btn-sm"
+                          outline
+                          color="danger"
+                        >
+                          <Trash size={16} />
+                        </Button.Ripple>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colSpan={3} rowSpan={1}>
+                        Total
+                      </th>
+                      <th rowSpan={1} colSpan={1}>
+                        0
+                      </th>
+                      <th rowSpan={1} colSpan={1} />
+                    </tr>
+                  </tfoot>
+                </table>
+                <div
+                  className="dataTables_info"
+                  id="example231_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 1 to 1 of 1 entries
+                </div>
+                <div
+                  className="dataTables_paginate paging_simple_numbers"
+                  id="example231_paginate"
+                >
+                  <ul className="pagination">
+                    <li
+                      className="paginate_button page-item previous disabled"
+                      id="example231_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="example231"
+                        data-dt-idx={0}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        Previous
+                      </a>
+                    </li>
+                    <li className="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="example231"
+                        data-dt-idx={1}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        1
+                      </a>
+                    </li>
+                    <li
+                      className="paginate_button page-item next disabled"
+                      id="example231_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="example231"
+                        data-dt-idx={2}
+                        tabIndex={0}
+                        className="page-link"
+                      >
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Modalform open={open} toggle={toggle} Component={CP[index]} />
+    </div>
+  );
+}
