@@ -28,6 +28,8 @@ import "@styles/react/libs/charts/apex-charts.scss";
 import StatsVertical from "@components/widgets/stats/StatsVertical";
 
 import Modalform from "./Modalform";
+import { Navigate } from "react-router-dom";
+import { AddEscrow } from "../../walletpages/components/EScomponent";
 
 export const WiresCp = () => {
   const bankDetails = {
@@ -571,100 +573,101 @@ export const DepCheck = () => {
   );
 };
 
-const VoucherTable = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  return (
-    <Row>
-      <Col xs="12">
-        <Table>
-          <thead>
-            <tr>
-              <th>Voucher No.</th>
-              <th>Amount</th>
-              <th>-</th>
-              <th>-</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ZRKQCw23iyX3GIGK</td>
-              <td>112</td>
-              <td>
-                <Button color="primary" className="btn-sm" onClick={toggle}>
-                  Transfer
-                </Button>
-              </td>
-              <td>
-                <Button color="secondry" className="btn-sm">
-                  Redeem
-                </Button>
-              </td>
-            </tr>
-            <tr>
-              <td>sT1Cpa3CzASUDW1J</td>
-              <td>123</td>
-              <td>
-                <Button color="primary" className="btn-sm" onClick={toggle}>
-                  Transfer
-                </Button>
-              </td>
-              <td>
-                <Button color="secondry" className="btn-sm">
-                  Redeem
-                </Button>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </Col>
-      <Col xs="12" className="p-4">
-        <Collapse isOpen={isOpen}>
-          <div>
-            <h4>Voucher Transfer</h4>
-          </div>
-          <Row className="mb-1">
-            <Label sm="3" for="name">
-              Transfer to
-            </Label>
-            <Col sm="9">
-              <Input type="text" name="name" id="name" />
-            </Col>
-          </Row>
-          <Row className="mb-1">
-            <Label sm="3" for="name">
-              Amount
-            </Label>
-            <Col sm="9">
-              <Input
-                type="text"
-                value={45}
-                disabled={true}
-                name="name"
-                id="name"
-              />
-            </Col>
-          </Row>
-          <Row className="mb-1">
-            <Label sm="3" for="name">
-              Descripation
-            </Label>
-            <Col sm="9">
-              <Input type="textarea" name="name" id="name" />
-            </Col>
-          </Row>
+// const VoucherTable = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const toggle = () => setIsOpen(!isOpen);
+//   return (
+//     <Row>
+//       <Col xs="12">
+//         <Table>
+//           <thead>
+//             <tr>
+//               <th>Voucher No.</th>
+//               <th>Amount</th>
+//               <th>-</th>
+//               <th>-</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             <tr>
+//               <td>ZRKQCw23iyX3GIGK</td>
+//               <td>112</td>
+//               <td>
+//                 <Button color="primary" className="btn-sm" onClick={toggle}>
+//                   Transfer
+//                 </Button>
+//               </td>
+//               <td>
+//                 <Button color="secondry" className="btn-sm">
+//                   Redeem
+//                 </Button>
+//               </td>
+//             </tr>
+//             <tr>
+//               <td>sT1Cpa3CzASUDW1J</td>
+//               <td>123</td>
+//               <td>
+//                 <Button color="primary" className="btn-sm" onClick={toggle}>
+//                   Transfer
+//                 </Button>
+//               </td>
+//               <td>
+//                 <Button color="secondry" className="btn-sm">
+//                   Redeem
+//                 </Button>
+//               </td>
+//             </tr>
+//           </tbody>
+//         </Table>
+//       </Col>
+//       <Col xs="12" className="p-4">
+//         <Collapse isOpen={isOpen}>
+//           <div>
+//             <h4>Voucher Transfer</h4>
+//           </div>
+//           <Row className="mb-1">
+//             <Label sm="3" for="name">
+//               Transfer to
+//             </Label>
+//             <Col sm="9">
+//               <Input type="text" name="name" id="name" />
+//             </Col>
+//           </Row>
+//           <Row className="mb-1">
+//             <Label sm="3" for="name">
+//               Amount
+//             </Label>
+//             <Col sm="9">
+//               <Input
+//                 type="text"
+//                 value={45}
+//                 disabled={true}
+//                 name="name"
+//                 id="name"
+//               />
+//             </Col>
+//           </Row>
+//           <Row className="mb-1">
+//             <Label sm="3" for="name">
+//               Descripation
+//             </Label>
+//             <Col sm="9">
+//               <Input type="textarea" name="name" id="name" />
+//             </Col>
+//           </Row>
 
-          <div className="d-flex justify-content-end gap-2">
-            <Button color="danger">Submit</Button>
-            <Button color="secondry" onClick={toggle}>
-              Cancel
-            </Button>
-          </div>
-        </Collapse>
-      </Col>
-    </Row>
-  );
-};
+//           <div className="d-flex justify-content-end gap-2">
+//             <Button color="danger">Submit</Button>
+//             <Button color="secondry" onClick={toggle}>
+//               Cancel
+//             </Button>
+//           </div>
+//         </Collapse>
+//       </Col>
+//     </Row>
+//   );
+// };
+const VoucherTable=()=> <Navigate to={"/admin/escrow"} replace={true}/>
 
 const QR = () => (
   <div className="d-flex flex-column justify-content-center align-items-center">
@@ -951,7 +954,7 @@ export const C3 = () => {
   const [open, setOpen] = useState(false);
   const [cpIndex, setCpIndex] = useState(0);
 
-  const CP = [CardTable, BankTable, VoucherTable, QR, WiresCp];
+  const CP = [CardTable, BankTable, VoucherTable, QR, AddEscrow];
 
   const toggled = (id = 0) => {
     if (typeof id == "number") setCpIndex(id);
@@ -970,6 +973,7 @@ export const C3 = () => {
     {
       t: "Escrow",
       icon: "E",
+      
     },
     {
       t: "QR Code",
@@ -983,6 +987,7 @@ export const C3 = () => {
 
   return (
     <Row className="w-100">
+
       {textArray.map((el, id) => {
         return (
           <Col xl="4" md="4" sm="6">
