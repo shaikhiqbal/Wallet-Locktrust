@@ -16,7 +16,7 @@ export default [
         id: "myprofile",
         title: "My Profile",
         icon: <Home />,
-        navLink: "/admin/profile",
+        navLink: "/admin/profile", 
       },
       {
         id: "accountSettings",
