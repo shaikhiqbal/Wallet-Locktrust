@@ -19,7 +19,9 @@ import {
   ListGroup,
   ListGroupItem,
   Badge,
+  Input,
 } from "reactstrap";
+import { RefreshCcw } from "react-feather";
 
 const RevenueReport = (props) => {
   // ** State
@@ -150,6 +152,17 @@ const RevenueReport = (props) => {
         <Col className="revenue-report-wrapper" md="8" xs="12">
           <div className="d-sm-flex justify-content-between align-items-center mb-3">
             <CardTitle className="mb-50 mb-sm-0">Revenue Report</CardTitle>
+            <CardTitle className="mb-50 mb-sm-0">
+              <Input type="select">
+                <option>Select</option>
+                <option>This Month </option>
+                <option> 3 Month</option>
+                <option>6 Month </option>
+                <option>9 Month </option>
+                <option>1 Year </option>
+                <option>Custome </option>
+              </Input>
+            </CardTitle>
             <div className="d-flex align-items-center">
               <div className="d-flex align-items-center me-2">
                 <span className="bullet bullet-primary me-50 cursor-pointer"></span>
@@ -170,6 +183,9 @@ const RevenueReport = (props) => {
           />
         </Col>
         <Col className="budget-wrapper" md="4" xs="12">
+          <div className="d-flex justify-content-end">
+            <RefreshCcw size={"14"} className="mb-2 cursor-pointer" />
+          </div>
           <ListGroup>
             {Object.keys(tableData).map((el) => (
               <ListGroupItem className="d-flex justify-content-between align-items-center">
