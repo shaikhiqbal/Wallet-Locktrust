@@ -288,7 +288,7 @@ function Switchaccount() {
                           className="form-control"
                           id="user_name"
                           autoComplete="off"
-                          value="Nerkar Nerkar"
+                          value="John John"
                           readOnly
                         />
                       </div>
@@ -300,7 +300,7 @@ function Switchaccount() {
                           className="form-control individual_email"
                           id="individual_email"
                           autoComplete="off"
-                          value="nerkargaurav40@gmail.com"
+                          value="Johngaurav40@gmail.com"
                           readOnly
                         />
                         <span id="individualemail_msg"></span>

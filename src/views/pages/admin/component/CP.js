@@ -76,7 +76,7 @@ export const AddCardForm = () => {
                 placeholder="First Name..."
                 id="FirstName"
                 title="First Name"
-                defaultValue="Nerkar"
+                defaultValue="John"
               />
             </div>
           </FormGroup>
@@ -94,7 +94,7 @@ export const AddCardForm = () => {
                 placeholder="Last Name..."
                 id="LastName"
                 title="Last Name"
-                defaultValue="Nerkar"
+                defaultValue="John"
               />
             </div>
           </FormGroup>
@@ -221,7 +221,7 @@ export const AddCardForm = () => {
                 placeholder="Email Address..."
                 id="EmailAddress"
                 title="Email"
-                defaultValue="nerkargaurav40@gmail.com"
+                defaultValue="Johngaurav40@gmail.com"
               />
             </div>
           </FormGroup>
@@ -408,7 +408,7 @@ export const CardTable = () => {
               <td>1</td>
               <td>4111-xxxx-xxxx-1111</td>
               <td>Jun - 2031</td>
-              <td>Gaurav Nerkar</td>
+              <td>John Doe</td>
               <td>Debit Card</td>
               <td className="d-flex gap-1">
                 <Badge color="info">Load</Badge>
@@ -510,7 +510,7 @@ export const DepCheck = () => {
             </Col>
           </Row>
           <Row className="mb-1">
-            <Label sm="3" for="Email"> 
+            <Label sm="3" for="Email">
               Bank Name
             </Label>
             <Col sm="9">
@@ -766,7 +766,7 @@ const BankTable = () => {
   const data = [
     {
       id: 1,
-      name: "NerkarNerkar",
+      name: "JohnJohn",
       accountNumber: "6005223223",
       routingNumber: "45698731",
       type: "Saving Account",
@@ -780,21 +780,21 @@ const BankTable = () => {
     },
     {
       id: 3,
-      name: "NerkarNerkar",
+      name: "JohnJohn",
       accountNumber: "91106296647",
       routingNumber: "--",
       type: "Saving Account",
     },
     {
       id: 4,
-      name: "NerkarNerkar",
+      name: "JohnJohn",
       accountNumber: "--",
       routingNumber: "--",
       type: "Checking Account",
     },
     {
       id: 5,
-      name: "NerkarNerkar",
+      name: "JohnJohn",
       accountNumber: "2323233",
       routingNumber: "232-323-232",
       type: "Checking Account",
