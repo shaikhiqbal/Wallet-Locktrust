@@ -151,7 +151,7 @@ const RevenueReport = (props) => {
       <Row className="mx-0">
         <Col className="revenue-report-wrapper" md="8" xs="12">
           <div className="d-sm-flex justify-content-between align-items-center mb-3">
-            <CardTitle className="mb-50 mb-sm-0">Revenue Report</CardTitle>
+            <CardTitle className="mb-50 mb-sm-0">Transaction Report</CardTitle>
             <CardTitle className="mb-50 mb-sm-0">
               <Input type="select">
                 <option>Select</option>
@@ -166,7 +166,7 @@ const RevenueReport = (props) => {
             <div className="d-flex align-items-center">
               <div className="d-flex align-items-center me-2">
                 <span className="bullet bullet-primary me-50 cursor-pointer"></span>
-                <span>Earning</span>
+                <span>Income</span>
               </div>
               <div className="d-flex align-items-center">
                 <span className="bullet bullet-warning me-50 cursor-pointer"></span>
@@ -186,6 +186,9 @@ const RevenueReport = (props) => {
           <div className="d-flex justify-content-end">
             <RefreshCcw size={"14"} className="mb-2 cursor-pointer" />
           </div>
+          <CardTitle className="mb-50 mb-sm-0">
+            Currency Exchange Rate
+          </CardTitle>
           <ListGroup>
             {Object.keys(tableData).map((el) => (
               <ListGroupItem className="d-flex justify-content-between align-items-center">
