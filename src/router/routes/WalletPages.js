@@ -24,6 +24,18 @@ const Escrow = lazy(() => import("../../views/pages/walletpages/Escrow"));
 const Invoice = lazy(() => import("../../views/pages/walletpages/Invoice"));
 const Calendar = lazy(() => import("../../views/pages/walletpages/Calendar"));
 const Profile = lazy(() => import("../../views/pages/walletpages/Profile"));
+const Alltransactions = lazy(() =>
+  import("../../views/pages/walletpages/Alltransactions")
+);
+const Banktransactions = lazy(() =>
+  import("../../views/pages/walletpages/Banktransactions")
+);
+const Cashtransactions = lazy(() =>
+  import("../../views/pages/walletpages/Cashtransactions")
+);
+const Wallettransactions = lazy(() =>
+  import("../../views/pages/walletpages/Wallettransactions")
+);
 const Currencyconversion = lazy(() =>
   import("../../views/pages/walletpages/Currencyconversion")
 );
@@ -85,6 +97,22 @@ const Admindashboard = [
   {
     path: "/admin/profile",
     element: <Profile />,
+  },
+  {
+    path: "/admin/alltransactions",
+    element: <Alltransactions />,
+  },
+  {
+    path: "/admin/banktransactions",
+    element: <Banktransactions />,
+  },
+  {
+    path: "/admin/cashtransactions",
+    element: <Cashtransactions />,
+  },
+  {
+    path: "/admin/wallettransactions",
+    element: <Wallettransactions />,
   },
 ];
 

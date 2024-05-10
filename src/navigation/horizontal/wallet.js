@@ -16,7 +16,7 @@ export default [
         id: "myprofile",
         title: "My Profile",
         icon: <Home />,
-        navLink: "/admin/profile", 
+        navLink: "/admin/profile",
       },
       {
         id: "accountSettings",
@@ -24,12 +24,12 @@ export default [
         icon: <Home />,
         navLink: "/admin/accountsettings",
       },
-      {
+      /*  {
         id: "support",
         title: "Support",
         icon: <Home />,
         navLink: "#",
-      },
+      }, */
     ],
   },
   {
@@ -62,16 +62,16 @@ export default [
         navLink: "/admin/banktransactions",
       },
       {
-        id: "wallettrans",
-        title: "Wallet Transactions",
-        icon: <Circle size={12} />,
-        navLink: "/admin/wallettransactions",
-      },
-      {
         id: "cashtrans",
         title: "Cash Transactions",
         icon: <Circle size={12} />,
         navLink: "/admin/cashtransactions",
+      },
+      {
+        id: "wallettrans",
+        title: "Wallet Transactions",
+        icon: <Circle size={12} />,
+        navLink: "/admin/wallettransactions",
       },
     ],
   },
